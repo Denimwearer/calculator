@@ -1,19 +1,20 @@
 import { useReducer } from "react";
 import DigitButton from "./components/DigitButton";
 import OperationButton from "./components/OperationButton";
-import './App.css';
+
 
 export const ACTIONS = {
-  ADD_DIGIT: 'add-digit',
-  CHOOSE_OPERATION: 'choose-operation',
-  CLEAR: 'clear',
-  DELETE_DIGIT: 'delete-digit',
-  EVALUATE: 'evaluate',
+  ADD_DIGIT: "add-digit",
+  CHOOSE_OPERATION: "choose-operation",
+  CLEAR: "clear",
+  DELETE_DIGIT: "delete-digit",
+  EVALUATE: "evaluate",
 }
 
 function reducer(state, { type, payload }) {
   switch (type) {
     case ACTIONS.ADD_DIGIT:
+      if (payload.digit === "0" && state.currentOperand === "0") return state
       return {
         ...state,
         currentOperand: `${state.currentOperand || ""}${payload.digit}`,
