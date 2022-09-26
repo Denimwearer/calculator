@@ -13,6 +13,8 @@ export const ACTIONS = {
 
 function reducer(state, { type, payload }) {
   switch (type) {
+    default:
+    return null
     case ACTIONS.ADD_DIGIT:
       if (state.overwrite) {
         return {
@@ -49,7 +51,7 @@ function reducer(state, { type, payload }) {
             ...state,
             operation: payload.operation,
             previousOperand: state.currentOperand,
-            currentOperand: null,
+            currentOperand: null
           }
         }
 
@@ -57,7 +59,7 @@ function reducer(state, { type, payload }) {
           ...state,
           previousOperand: evaluate(state),
           operation: payload.operation,
-          currentOperand: null,
+          currentOperand: null
         }
       case ACTIONS.CLEAR:
         return {}
@@ -102,6 +104,8 @@ function evaluate({ currentOperand, previousOperand, operation}) {
   if (isNaN(prev) || isNaN(current)) return ""
   let computation = ""
   switch (operation) {
+    default:
+    return null 
     case "+":
       computation = prev + current
       break;
